@@ -23,6 +23,18 @@ M.init = async function() {
     data = ical.parseICS(data);
     Events.mmi1 = new EventManager('mmi1', 'MMI 1', 'Agenda des MMI 1');
     Events.mmi1.addEvents(data);
+
+    let data2 = await fetch('./data/mmi2.ics');
+    data2 = await data2.text();
+    data2 = ical.parseICS(data2);
+    Events.mmi2 = new EventManager('mmi2', 'MMI 2', 'Agenda des MMI 2');
+    Events.mmi2.addEvents(data2);
+
+    let data3 = await fetch('./data/mmi3.ics');
+    data3 = await data3.text();
+    data3 = ical.parseICS(data3);
+    Events.mmi3 = new EventManager('mmi3', 'MMI 3', 'Agenda des MMI 3');
+    Events.mmi3.addEvents(data3);
 }
 
 export { M };

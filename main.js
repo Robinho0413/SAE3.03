@@ -1,6 +1,8 @@
 import { M } from "./js/model.js";
 import { V } from "./js/view.js";
 
+let C = {};
+
 /*
    Ce fichier correspond au contrôleur de l'application. Il est chargé de faire le lien entre le modèle et la vue.
    Le modèle et la vue sont définis dans les fichiers js/model.js et js/view.js et importés (M et V, parties "publiques") dans ce fichier.
@@ -41,30 +43,46 @@ await M.init();
 // creating events in the calendar
 
 // iteration 1
-V.uicalendar.createEvents( M.getEvents('mmi1') );
 
-// iteration 2
-
-function prev(){
-  V.uicalendar.prev();
+C.init = function(){
+  V.uicalendar.createEvents( M.getEvents('mmi1') );
+  V.uicalendar.createEvents( M.getEvents('mmi2') );
+  V.uicalendar.createEvents( M.getEvents('mmi3') );
+  V.updateColor();
 }
 
-function curr(){
-  V.uicalendar.today();
+C.init();
+
+C.natureColor = function(calId, cm, td, tp){
+  let calendar = M.getEvents(calId);
+
+  for(let ev of calendar){
+    if(ev.title.includes('CM')){
+      let changes = {
+        backgroundColor : cm
+      };
+      V.uicalendar.updateEvent(ev.id, calId, changes);
+    }
+
+    if(ev.title.includes('TD')){
+      let changes = {
+        backgroundColor : td
+      };
+      V.uicalendar.updateEvent(ev.id, calId, changes);
+    }
+
+    if(ev.title.includes('TP')){
+      let changes = {
+        backgroundColor : tp
+      };
+      V.uicalendar.updateEvent(ev.id, calId, changes);
+    }
+  }
 }
 
-function next(){
-  V.uicalendar.next();
-}
 
-
-let previousWeek = document.querySelector('#previousWeek');
-previousWeek.addEventListener('click', prev);
-
-let currentWeek = document.querySelector('#currentWeek');
-currentWeek.addEventListener('click', curr);
-
-let nextWeek = document.querySelector('#nextWeek');
-nextWeek.addEventListener('click', next);
+C.natureColor('mmi1', '#8C0808' , '#BF0F0F' , '#F23D3D') 
+C.natureColor('mmi2', '#125728' , '#4A9C62' , '#89D49A') 
+C.natureColor('mmi3', '#035AA6' , '#049DD9' , '#79D0F2')
 
 
