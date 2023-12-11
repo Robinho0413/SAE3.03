@@ -19,24 +19,26 @@ import { V } from "./js/view.js";
 await M.init();
 
 // sample events for testing
-let edt = [
-  {
-    id: '1',
-    calendarId: '1',
-    title: 'my event',
-    category: 'time',
-    start: '2023-12-11T08:30:00',
-    end: '2023-12-11T10:30:00',
-  },
-  {
-    id: '2',
-    calendarId: '1',
-    title: 'second event',
-    category: 'time',
-    start: '2023-12-13T14:00:00',
-    end: '2023-12-13T15:30:00',
-  },
-]
+// let edt = [
+//   {
+//     id: '1',
+//     calendarId: '1',
+//     title: 'my event',
+//     category: 'time',
+//     start: '2023-12-11T08:30:00',
+//     end: '2023-12-11T10:30:00',
+//   },
+//   {
+//     id: '2',
+//     calendarId: '1',
+//     title: 'second event',
+//     category: 'time',
+//     start: '2023-12-13T14:00:00',
+//     end: '2023-12-13T15:30:00',
+//   },
+// ]
 
 // creating events in the calendar
-V.uicalendar.createEvents( edt );
+
+// iteration 1
+V.uicalendar.createEvents( M.getEvents('mmi1') );
