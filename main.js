@@ -42,3 +42,29 @@ await M.init();
 
 // iteration 1
 V.uicalendar.createEvents( M.getEvents('mmi1') );
+
+// iteration 2
+
+function prev(){
+  V.uicalendar.prev();
+}
+
+function curr(){
+  V.uicalendar.today();
+}
+
+function next(){
+  V.uicalendar.next();
+}
+
+
+let previousWeek = document.querySelector('#previousWeek');
+previousWeek.addEventListener('click', prev);
+
+let currentWeek = document.querySelector('#currentWeek');
+currentWeek.addEventListener('click', curr);
+
+let nextWeek = document.querySelector('#nextWeek');
+nextWeek.addEventListener('click', next);
+
+
