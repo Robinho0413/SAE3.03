@@ -17,6 +17,21 @@ M.getEvents = function(annee) {
     return null;
 }
 
+
+
+M.getConcatEvents = function() {
+
+    let allEv = []
+
+    for(let ev in Events){
+        allEv = allEv.concat(Events[ev].toObject());
+
+    }
+
+    return allEv;
+    
+}
+
 M.init = async function() {
     let data = await fetch('./data/mmi1.ics');
     data = await data.text();

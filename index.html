@@ -10,20 +10,48 @@
     <div>
       <header>
         <nav>
-          <ul>
-            <li><button id="previousWeek">Previous Week</button></li>
-            <li><button id="currentWeek">Current Week</button></li>
-            <li><button id="nextWeek">Next Week</button></li>
+          <div>
+            <ul>
+              <!-- naviguer entre les semaines -->
+              <li><button id="previousWeek">Previous Week</button></li>
+              <li><button id="currentWeek">Current Week</button></li>
+              <li><button id="nextWeek">Next Week</button></li>
+            </ul>
 
-            <div id="checkboxs">
-              <input type="checkbox" id="mmi1" value="mmi1" checked="">
-              <label for="mmi1">MMI1</label>
-              <input type="checkbox" id="mmi2" value="mmi2" checked="">
-              <label for="mmi2">MMI2</label>
-              <input type="checkbox" id="mmi3" value="mmi3" checked="">
-              <label for="mmi3">MMI3</label>
-            </div>
-          </ul>
+            <!-- choix des années -->
+            <ul id="checkboxs">
+              <li>
+                <input type="checkbox" id="mmi1" value="mmi1" checked="">
+                <label for="mmi1">MMI1</label>
+              </li>
+              <li>
+                <input type="checkbox" id="mmi2" value="mmi2" checked="">
+                <label for="mmi2">MMI2</label>
+              </li>
+              <li>
+                <input type="checkbox" id="mmi3" value="mmi3" checked="">
+                <label for="mmi3">MMI3</label>
+              </li>
+            </ul>
+          </div>
+
+          <!-- choix des groupes -->
+            <select name="groups" id="select-groups">
+              <option id="select-group-mmi1" value="BUT1-G1">BUT1-G1</option>
+              <option id="select-group-mmi1" value="BUT1-G21">BUT1-G21</option>
+              <option id="select-group-mmi1" value="BUT1-G22">BUT1-G22</option>
+              <option id="select-group-mmi1" value="BUT1-G3">BUT1-G3</option>
+
+              <option id="select-group-mmi2" value="BUT2-G1">BUT2-G1</option>
+              <option id="select-group-mmi2" value="BUT2-G21">BUT2-G21</option>
+              <option id="select-group-mmi2" value="BUT2-G22">BUT2-G22</option>
+              <option id="select-group-mmi2" value="BUT2-G3">BUT2-G3</option>
+
+              <option id="select-group-mmi3" value="BUT3-G1">BUT3-G1</option>
+              <option id="select-group-mmi3" value="BUT3-G21">BUT3-G21</option>
+              <option id="select-group-mmi3" value="BUT3-G22">BUT3-G22</option>
+              <option id="select-group-mmi3" value="BUT3-G3">BUT3-G3</option>
+            </select>
          
         </nav>
       </header>

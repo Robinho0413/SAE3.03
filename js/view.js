@@ -3,6 +3,22 @@ import '@toast-ui/calendar/dist/toastui-calendar.min.css';
 
 let V = {};
 
+// pour chaque année, une couleur est associé à un type de cours
+// l'objet colorMap dispose des paramêtres TP TD CM et others ayant comme valeurs une chaine de caractères (ici une couleur)
+let colorMap = {
+  mmi1: {
+    TP: '#F23D3D' , TD :'#BF0F0F' , CM:'#8C0808', others:'#FF0000'
+  },
+
+  mmi2: {
+    TP: '#89D49A' , TD :'#4A9C62' , CM:'#125728', others:'#00FF00'
+  },
+
+  mmi3: {
+    TP: '#79D0F2' , TD :'#049DD9' , CM:'#035AA6', others:'#00C1FF'
+  }
+}
+
 V.uicalendar = new Calendar('#calendar', {
   defaultView: 'week',
   isReadOnly: true,
@@ -27,8 +43,7 @@ V.uicalendar = new Calendar('#calendar', {
 });
 
 
-// iteration 2
-
+// fonction previous, current et next pour naviguer entre les semaines
 function prev(){
   V.uicalendar.prev();
 }
@@ -41,7 +56,6 @@ function next(){
   V.uicalendar.next();
 }
 
-
 let previousWeek = document.querySelector('#previousWeek');
 previousWeek.addEventListener('click', prev);
 
@@ -52,28 +66,17 @@ let nextWeek = document.querySelector('#nextWeek');
 nextWeek.addEventListener('click', next);
 
 
-// iteration 3
+// fonction pour affecter une couleur à un cours en fonction de son type : CM TD TP
+V.courseColor = function(objectevents) {
+ 
+  for (let event of objectevents) { 
+    event.backgroundColor = colorMap[event.calendarId][event.type]
+  
+  };
 
-V.updateColor = function() {
-  V.uicalendar.setCalendarColor('mmi1', {
-    color: '#FFFFFF',
-    backgroundColor: '#FF0000',
-    borderColor: '#CACACA',
-    dragBackgroundColor: '#585858',
-  });
-  V.uicalendar.setCalendarColor('mmi2', {
-    color: '#FFFFFF',
-    backgroundColor: '#00FF00',
-    borderColor: '#CACACA',
-    dragBackgroundColor: '#dc9656',
-  });
-  V.uicalendar.setCalendarColor('mmi3', {
-    color: '#FFFFFF',
-    backgroundColor: '#00C1FF',
-    borderColor: '#878787',
-    dragBackgroundColor: '#ab4642',
-  });
-}
+ 
+};
+
 
 
 export { V };

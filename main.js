@@ -20,99 +20,52 @@ let C = {};
 // loadind data (and wait for it !)
 await M.init();
 
-// sample events for testing
-// let edt = [
-//   {
-//     id: '1',
-//     calendarId: '1',
-//     title: 'my event',
-//     category: 'time',
-//     start: '2023-12-11T08:30:00',
-//     end: '2023-12-11T10:30:00',
-//   },
-//   {
-//     id: '2',
-//     calendarId: '1',
-//     title: 'second event',
-//     category: 'time',
-//     start: '2023-12-13T14:00:00',
-//     end: '2023-12-13T15:30:00',
-//   },
-// ]
+
 
 // creating events in the calendar
 
 
 C.init = function(){
-  V.uicalendar.createEvents( M.getEvents('mmi1') );
-  V.uicalendar.createEvents( M.getEvents('mmi2') );
-  V.uicalendar.createEvents( M.getEvents('mmi3') );
-  V.updateColor();
+  // V.uicalendar.createEvents( M.getEvents('mmi1') );
+  // V.uicalendar.createEvents( M.getEvents('mmi2') );
+  // V.uicalendar.createEvents( M.getEvents('mmi3') );
 }
 
 C.init();
 
 
-// couleurs en fonction de la nature du cours : CM TD TP
-C.natureColor = function(calId, cm, td, tp){
-  let calendar = M.getEvents(calId);
 
-  for(let ev of calendar){
-    if(ev.title.includes('CM')){
-      let changes = {
-        backgroundColor : cm
-      };
-      V.uicalendar.updateEvent(ev.id, calId, changes);
-    }
-
-    if(ev.title.includes('TD')){
-      let changes = {
-        backgroundColor : td
-      };
-      V.uicalendar.updateEvent(ev.id, calId, changes);
-    }
-
-    if(ev.title.includes('TP')){
-      let changes = {
-        backgroundColor : tp
-      };
-      V.uicalendar.updateEvent(ev.id, calId, changes);
-    }
-  }
-}
-
-C.natureColor('mmi1', '#8C0808' , '#BF0F0F' , '#F23D3D') 
-C.natureColor('mmi2', '#125728' , '#4A9C62' , '#89D49A') 
-C.natureColor('mmi3', '#035AA6' , '#049DD9' , '#79D0F2')
-
-
-
-// afficher les années désirés
+// affichage des années
 
 let year = document.querySelector('#checkboxs');
 
 C.handler_clickOnCheckbox = function(ev){
-  if(ev.target.id == "mmi1" && ev.target.checked){
-    V.uicalendar.setCalendarVisibility("mmi1", true);
-  }
-  else if(ev.target.id == "mmi1" && ev.target.checked == false){
-    V.uicalendar.setCalendarVisibility("mmi1", false);
-  }
 
-  else if(ev.target.id == "mmi2" && ev.target.checked){
-    V.uicalendar.setCalendarVisibility("mmi2", true);
-  }
-  else if(ev.target.id == "mmi2" && ev.target.checked == false){
-    V.uicalendar.setCalendarVisibility("mmi2", false);
-  }
-
-  else if(ev.target.id == "mmi3" && ev.target.checked){
-    V.uicalendar.setCalendarVisibility("mmi3", true);
-  }
-  else if(ev.target.id == "mmi3" && ev.target.checked == false){
-    V.uicalendar.setCalendarVisibility("mmi3", false);
-  }
+  if(ev.target.tagName =="INPUT"){
+    let allEvents = M.getConcatEvents();
   
+    let eventsByYear = [];
+
+    let years = document.querySelectorAll('#checkboxs li input')
+ 
+    for(let year of years){
+      if(year.checked == true){
+        for (let event of allEvents){
+          if(event.calendarId == year.id){
+            eventsByYear.push(event);
+          }
+        }
+      }
+    }
+      
+    V.uicalendar.clear()
+
+    V.courseColor(eventsByYear)
+
+    V.uicalendar.createEvents(eventsByYear);
+        
+  }
+
 }
 
 year.addEventListener('click', C.handler_clickOnCheckbox);
@@ -120,7 +73,38 @@ year.addEventListener('click', C.handler_clickOnCheckbox);
 
 
 
+// affichage des groupes
+let group = document.querySelector('#select-groups');
 
+
+C.handler_changeOnGroup = function(ev){
+  let allEvents = M.getConcatEvents();
+
+  let eventsByGroup = [];
+
+  for(let event of allEvents){
+    if(event.groups.includes(ev.target.value)){
+      eventsByGroup.push(event);
+    }
+  }
+
+
+  V.uicalendar.clear()
+  
+  V.courseColor(eventsByGroup)
+
+  V.uicalendar.createEvents(eventsByGroup)
+  
+}
+
+group.addEventListener('change', C.handler_changeOnGroup);
+
+
+let all = M.getConcatEvents()
+
+V.courseColor(all)
+
+V.uicalendar.createEvents(all);
 
 
 
