@@ -26,6 +26,7 @@ V.uicalendar = new Calendar('#calendar', {
  
 });
 
+
 // iteration 2
 
 function prev(){
@@ -50,7 +51,9 @@ currentWeek.addEventListener('click', curr);
 let nextWeek = document.querySelector('#nextWeek');
 nextWeek.addEventListener('click', next);
 
+
 // iteration 3
+
 V.updateColor = function() {
   V.uicalendar.setCalendarColor('mmi1', {
     color: '#FFFFFF',

@@ -42,7 +42,6 @@ await M.init();
 
 // creating events in the calendar
 
-// iteration 1
 
 C.init = function(){
   V.uicalendar.createEvents( M.getEvents('mmi1') );
@@ -53,6 +52,8 @@ C.init = function(){
 
 C.init();
 
+
+// couleurs en fonction de la nature du cours : CM TD TP
 C.natureColor = function(calId, cm, td, tp){
   let calendar = M.getEvents(calId);
 
@@ -80,9 +81,49 @@ C.natureColor = function(calId, cm, td, tp){
   }
 }
 
-
 C.natureColor('mmi1', '#8C0808' , '#BF0F0F' , '#F23D3D') 
 C.natureColor('mmi2', '#125728' , '#4A9C62' , '#89D49A') 
 C.natureColor('mmi3', '#035AA6' , '#049DD9' , '#79D0F2')
+
+
+
+// afficher les années désirés
+
+let year = document.querySelector('#checkboxs');
+
+C.handler_clickOnCheckbox = function(ev){
+  if(ev.target.id == "mmi1" && ev.target.checked){
+    V.uicalendar.setCalendarVisibility("mmi1", true);
+  }
+  else if(ev.target.id == "mmi1" && ev.target.checked == false){
+    V.uicalendar.setCalendarVisibility("mmi1", false);
+  }
+
+  else if(ev.target.id == "mmi2" && ev.target.checked){
+    V.uicalendar.setCalendarVisibility("mmi2", true);
+  }
+  else if(ev.target.id == "mmi2" && ev.target.checked == false){
+    V.uicalendar.setCalendarVisibility("mmi2", false);
+  }
+
+  else if(ev.target.id == "mmi3" && ev.target.checked){
+    V.uicalendar.setCalendarVisibility("mmi3", true);
+  }
+  else if(ev.target.id == "mmi3" && ev.target.checked == false){
+    V.uicalendar.setCalendarVisibility("mmi3", false);
+  }
+  
+}
+
+year.addEventListener('click', C.handler_clickOnCheckbox);
+
+
+
+
+
+
+
+
+
 
 
