@@ -33,47 +33,39 @@ M.getConcatEvents = function() {
 }
 
 // filtre pour le champ de saisie
-// M.getEventBySearch = function(chaine){
-
-//     let res = [];
-
-//     for(let events of M.getConcatEvents()){
-
-//         let loc = events.location.toLocaleLowerCase()
-//         let tit = events.title.toLocaleLowerCase()
-//         let bod = events.body.toLocaleLowerCase()
-
-//         if(loc.includes(chaine.toLowerCase())){
-//             res.push(events);
-//         }   
-//         else if(tit.includes(chaine.toLowerCase())){
-//             res.push(events);
-//         } 
-//         else if(bod.includes(chaine.toLowerCase())){
-//             res.push(events);
-//         } 
-//     }
-
-//     return structuredClone(res);
-// }
-
 M.getEventBySearch = function(chaine){
 
     let res = [];
+    // recupere tous les input sous forme de tableau
+    let allInput = chaine.toLowerCase().split(' ');
 
     for(let events of M.getConcatEvents()){
-        for (let elt in events){
-            let element = events[elt].toString().toLocaleLowerCase()
+        let match = true;
 
-            if(element.includes(chaine.toLowerCase())){
+        for (let input of allInput){
+            let included = false;
 
-                if(res.includes(events) == false){
-                    res.push(events);
+            for (let elt in events){
+                let element = events[elt].toString().toLocaleLowerCase();
+    
+                if(element.includes(input.toLowerCase())){
+                    included = true;
+                    break;
                 }
+            }
+
+            if(included == false){
+                match = false;
+                break;
+            }
+        }
+
+        if(match == true){
+            if(res.includes(events) == false){
+                res.push(events);
             }
         }
     }
-
     return structuredClone(res);
 }
 
