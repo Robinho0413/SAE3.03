@@ -3,6 +3,16 @@ import '@toast-ui/calendar/dist/toastui-calendar.min.css';
 
 let V = {};
 
+V.init = function(){
+  // navigation entre les semaines et les jours
+  let navigation = document.querySelector('#navigation');
+  navigation.addEventListener('click', V.handler_clickOnNavigation);
+
+  // changement de la vue (mois, semaine, jour)
+  let view = document.querySelector('#view');
+  view.addEventListener('click', V.handler_clickOnView);
+}
+
 // pour chaque année, une couleur est associé à un type de cours
 // l'objet colorMap dispose des paramêtres TP TD CM et others ayant comme valeurs une chaine de caractères (ici une couleur)
 let colorMap = {
@@ -44,8 +54,6 @@ V.uicalendar = new Calendar('#calendar', {
 
 
 // fonction previous, current et next pour naviguer entre les semaines
-let navigation = document.querySelector('#navigation');
-
 V.handler_clickOnNavigation = function(ev){
   if(ev.target.id == 'previous'){
     // navigate to previous
@@ -61,12 +69,10 @@ V.handler_clickOnNavigation = function(ev){
   }
 }
 
-navigation.addEventListener('click', V.handler_clickOnNavigation);
+
 
 
 // selection de la vue
-let view = document.querySelector('#view');
-
 V.handler_clickOnView = function(ev){
   if(ev.target.id == 'view-day'){
     // change to daily view
@@ -82,7 +88,7 @@ V.handler_clickOnView = function(ev){
   }
 }
 
-view.addEventListener('click', V.handler_clickOnView);
+
 
 
 
@@ -91,10 +97,7 @@ V.courseColor = function(objectevents) {
  
   for (let event of objectevents) { 
     event.backgroundColor = colorMap[event.calendarId][event.type]
-  
   };
-
- 
 };
 
 // définition de la vue en fonction du format de l'appareil

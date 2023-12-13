@@ -27,22 +27,35 @@ await M.init();
 
 C.init = function(){
   let all = M.getConcatEvents()
-
+  
   V.courseColor(all)
-
+  
   V.uicalendar.createEvents(all);
-
+  
+  // définition de la vue en fonction du format de l'appareil
   V.deviceFormat();
+  
+  V.init();
+
+  // affichage des années
+  let year = document.querySelector('#checkboxs');
+  year.addEventListener('click', C.handler_clickOnYear);
+
+  // affichage des groupes
+  let group = document.querySelector('#select-groups');
+  group.addEventListener('change', C.handler_changeOnGroup);
+
+  // barre de recherche
+  let input = document.querySelector("#searchBar");
+  input.addEventListener("keyup", C.handler_filterOnSearch);
 }
 
-C.init();
+
 
 
 
 // affichage des années
-let year = document.querySelector('#checkboxs');
-
-C.handler_clickOnCheckbox = function(ev){
+C.handler_clickOnYear = function(ev){
 
   if(ev.target.tagName =="INPUT"){
     let allEvents = M.getConcatEvents();
@@ -66,19 +79,11 @@ C.handler_clickOnCheckbox = function(ev){
     V.courseColor(eventsByYear)
 
     V.uicalendar.createEvents(eventsByYear);
-        
   }
-
 }
-
-year.addEventListener('click', C.handler_clickOnCheckbox);
-
-
 
 
 // affichage des groupes
-let group = document.querySelector('#select-groups');
-
 C.handler_changeOnGroup = function(ev){
   let allEvents = M.getConcatEvents();
 
@@ -96,16 +101,13 @@ C.handler_changeOnGroup = function(ev){
   V.courseColor(eventsByGroup)
 
   V.uicalendar.createEvents(eventsByGroup)
-  
 }
 
-group.addEventListener('change', C.handler_changeOnGroup);
 
 
 
-// champ de saisie
-let input = document.querySelector("#searchBar");
 
+// barre de recherche
 C.handler_filterOnSearch = function(ev){
   let input = ev.target.value;
   let events = M.getEventBySearch(input);
@@ -116,14 +118,10 @@ C.handler_filterOnSearch = function(ev){
   V.courseColor(events)
 
   V.uicalendar.createEvents(events)
-
 }
 
-input.addEventListener("keyup", C.handler_filterOnSearch);
 
-
-
-
+C.init();
 
 
 

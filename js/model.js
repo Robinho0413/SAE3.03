@@ -18,7 +18,7 @@ M.getEvents = function(annee) {
 }
 
 
-
+// concaténation les évenement de Events dans un tableau
 M.getConcatEvents = function() {
 
     let allEv = []
