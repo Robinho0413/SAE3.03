@@ -32,6 +32,55 @@ M.getConcatEvents = function() {
     
 }
 
+// filtre pour le champ de saisie
+// M.getEventBySearch = function(chaine){
+
+//     let res = [];
+
+//     for(let events of M.getConcatEvents()){
+
+//         let loc = events.location.toLocaleLowerCase()
+//         let tit = events.title.toLocaleLowerCase()
+//         let bod = events.body.toLocaleLowerCase()
+
+//         if(loc.includes(chaine.toLowerCase())){
+//             res.push(events);
+//         }   
+//         else if(tit.includes(chaine.toLowerCase())){
+//             res.push(events);
+//         } 
+//         else if(bod.includes(chaine.toLowerCase())){
+//             res.push(events);
+//         } 
+//     }
+
+//     return structuredClone(res);
+// }
+
+M.getEventBySearch = function(chaine){
+
+    let res = [];
+
+    for(let events of M.getConcatEvents()){
+        for (let elt in events){
+            let element = events[elt].toString().toLocaleLowerCase()
+
+            if(element.includes(chaine.toLowerCase())){
+
+                if(res.includes(events)){
+
+                }
+                else {
+                    res.push(events);
+                }
+            }
+        }
+    }
+
+    return structuredClone(res);
+}
+
+
 M.init = async function() {
     let data = await fetch('./data/mmi1.ics');
     data = await data.text();

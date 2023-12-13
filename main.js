@@ -26,9 +26,11 @@ await M.init();
 
 
 C.init = function(){
-  // V.uicalendar.createEvents( M.getEvents('mmi1') );
-  // V.uicalendar.createEvents( M.getEvents('mmi2') );
-  // V.uicalendar.createEvents( M.getEvents('mmi3') );
+  let all = M.getConcatEvents()
+
+  V.courseColor(all)
+
+  V.uicalendar.createEvents(all);
 }
 
 C.init();
@@ -36,7 +38,6 @@ C.init();
 
 
 // affichage des années
-
 let year = document.querySelector('#checkboxs');
 
 C.handler_clickOnCheckbox = function(ev){
@@ -76,7 +77,6 @@ year.addEventListener('click', C.handler_clickOnCheckbox);
 // affichage des groupes
 let group = document.querySelector('#select-groups');
 
-
 C.handler_changeOnGroup = function(ev){
   let allEvents = M.getConcatEvents();
 
@@ -100,11 +100,26 @@ C.handler_changeOnGroup = function(ev){
 group.addEventListener('change', C.handler_changeOnGroup);
 
 
-let all = M.getConcatEvents()
 
-V.courseColor(all)
+// champ de saisie
+let input = document.querySelector("#searchBar");
 
-V.uicalendar.createEvents(all);
+C.handler_filterOnSearch = function(ev){
+  let input = ev.target.value;
+  let events = M.getEventBySearch(input);
+
+  
+  V.uicalendar.clear()
+  
+  V.courseColor(events)
+
+  V.uicalendar.createEvents(events)
+
+}
+
+input.addEventListener("keyup", C.handler_filterOnSearch);
+
+
 
 
 
