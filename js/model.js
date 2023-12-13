@@ -67,10 +67,7 @@ M.getEventBySearch = function(chaine){
 
             if(element.includes(chaine.toLowerCase())){
 
-                if(res.includes(events)){
-
-                }
-                else {
+                if(res.includes(events) == false){
                     res.push(events);
                 }
             }
