@@ -74,18 +74,26 @@ V.handler_clickOnNavigation = function(ev){
 
 // selection de la vue
 V.handler_clickOnView = function(ev){
+  let item = "";
   if(ev.target.id == 'view-day'){
     // change to daily view
     V.uicalendar.changeView('day');
+    item = "day";
   }
   else if(ev.target.id == 'view-week'){
     // change to weekly view
     V.uicalendar.changeView('week');
+    item = "week";
   }
   else if(ev.target.id == 'view-month'){
     // change to monthly view
     V.uicalendar.changeView('month');
+    item = "month";
   }
+
+  localStorage.removeItem("view");
+
+  localStorage.setItem("view", item);
 }
 
 

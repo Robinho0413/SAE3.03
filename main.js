@@ -26,19 +26,10 @@ await M.init();
 
 
 C.init = function(){
-  let all = M.getConcatEvents()
-  
-  V.courseColor(all)
-  
-  V.uicalendar.createEvents(all);
-  
-  // définition de la vue en fonction du format de l'appareil
-  V.deviceFormat();
-  
   V.init();
 
   // affichage des années
-  let year = document.querySelector('#checkboxs');
+  let year = document.querySelector('#checkboxs-year');
   year.addEventListener('click', C.handler_clickOnYear);
 
   // affichage des groupes
@@ -48,9 +39,40 @@ C.init = function(){
   // barre de recherche
   let input = document.querySelector("#searchBar");
   input.addEventListener("keyup", C.handler_filterOnSearch);
+
+
+  let all = M.getConcatEvents()
+  
+  V.courseColor(all)
+  
+  V.uicalendar.createEvents(all);
+  
+  // définition de la vue en fonction du format de l'appareil
+  V.deviceFormat();
+  
+
+  // sauvegarde de la vue en localStorage
+  if(localStorage.getItem("view") != undefined){
+    let view = localStorage.getItem("view");
+    V.uicalendar.changeView(view)
+  }
+
+  // sauvegarde des années en localStorage
+  if(localStorage.getItem("year") != undefined){
+    let year = JSON.parse(localStorage.getItem("year"));
+    V.uicalendar.clear();
+    V.courseColor(year);
+    V.uicalendar.createEvents(year);
+  }
+  
+  // sauvegarde des groupes en localStorage
+  if(localStorage.getItem("group") != undefined){
+    let group = JSON.parse(localStorage.getItem("group"));
+    V.uicalendar.clear();
+    V.courseColor(group);
+    V.uicalendar.createEvents(group);
+  } 
 }
-
-
 
 
 
@@ -62,23 +84,30 @@ C.handler_clickOnYear = function(ev){
   
     let eventsByYear = [];
 
-    let years = document.querySelectorAll('#checkboxs li input')
+    let years = document.querySelectorAll('#year')
  
     for(let year of years){
       if(year.checked == true){
         for (let event of allEvents){
-          if(event.calendarId == year.id){
+          // compare l'id avec la value de chaque checkbox
+          if(event.calendarId == year.value){
             eventsByYear.push(event);
           }
         }
       }
     }
+
+    localStorage.removeItem("year");
+    localStorage.removeItem("group");
+    
+    localStorage.setItem("year", JSON.stringify(eventsByYear));
       
     V.uicalendar.clear()
 
     V.courseColor(eventsByYear)
 
     V.uicalendar.createEvents(eventsByYear);
+
   }
 }
 
@@ -94,6 +123,11 @@ C.handler_changeOnGroup = function(ev){
       eventsByGroup.push(event);
     }
   }
+
+  localStorage.removeItem("group");
+  localStorage.removeItem("year");
+  
+  localStorage.setItem("group", JSON.stringify(eventsByGroup));
 
 
   V.uicalendar.clear()
