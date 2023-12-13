@@ -31,6 +31,8 @@ C.init = function(){
   V.courseColor(all)
 
   V.uicalendar.createEvents(all);
+
+  V.deviceFormat();
 }
 
 C.init();

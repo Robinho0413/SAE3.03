@@ -44,26 +44,46 @@ V.uicalendar = new Calendar('#calendar', {
 
 
 // fonction previous, current et next pour naviguer entre les semaines
-function prev(){
-  V.uicalendar.prev();
+let navigation = document.querySelector('#navigation');
+
+V.handler_clickOnNavigation = function(ev){
+  if(ev.target.id == 'previous'){
+    // navigate to previous
+    V.uicalendar.prev();
+  }
+  else if(ev.target.id == 'current'){
+    // navigate to today
+    V.uicalendar.today();
+  }
+  else if(ev.target.id == 'next'){
+    // navigate to next
+    V.uicalendar.next();
+  }
 }
 
-function curr(){
-  V.uicalendar.today();
+navigation.addEventListener('click', V.handler_clickOnNavigation);
+
+
+// selection de la vue
+let view = document.querySelector('#view');
+
+V.handler_clickOnView = function(ev){
+  if(ev.target.id == 'view-day'){
+    // change to daily view
+    V.uicalendar.changeView('day');
+  }
+  else if(ev.target.id == 'view-week'){
+    // change to weekly view
+    V.uicalendar.changeView('week');
+  }
+  else if(ev.target.id == 'view-month'){
+    // change to monthly view
+    V.uicalendar.changeView('month');
+  }
 }
 
-function next(){
-  V.uicalendar.next();
-}
+view.addEventListener('click', V.handler_clickOnView);
 
-let previousWeek = document.querySelector('#previousWeek');
-previousWeek.addEventListener('click', prev);
-
-let currentWeek = document.querySelector('#currentWeek');
-currentWeek.addEventListener('click', curr);
-
-let nextWeek = document.querySelector('#nextWeek');
-nextWeek.addEventListener('click', next);
 
 
 // fonction pour affecter une couleur à un cours en fonction de son type : CM TD TP
@@ -76,6 +96,16 @@ V.courseColor = function(objectevents) {
 
  
 };
+
+// définition de la vue en fonction du format de l'appareil
+V.deviceFormat = function(){
+  if(window.innerWidth <= 768){
+    V.uicalendar.changeView('day');
+  }
+  else {
+    V.uicalendar.changeView('week');
+  }
+}
 
 
 
