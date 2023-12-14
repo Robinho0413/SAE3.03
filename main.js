@@ -51,14 +51,9 @@ C.init = function(){
   V.deviceFormat();
   
 
-  // sauvegarde de la vue en localStorage
-  if(localStorage.getItem("view") != undefined){
-    let view = localStorage.getItem("view");
-    V.uicalendar.changeView(view)
-  }
-
+  
   // sauvegarde des années en localStorage
-  if(localStorage.getItem("year") != undefined){
+  if(!localStorage.getItem("group") && localStorage.getItem("year") != undefined){
     let year = JSON.parse(localStorage.getItem("year"));
     V.uicalendar.clear();
     V.courseColor(year);
@@ -66,12 +61,18 @@ C.init = function(){
   }
   
   // sauvegarde des groupes en localStorage
-  if(localStorage.getItem("group") != undefined){
+  if(!localStorage.getItem("year") && localStorage.getItem("group") != undefined){
     let group = JSON.parse(localStorage.getItem("group"));
     V.uicalendar.clear();
     V.courseColor(group);
     V.uicalendar.createEvents(group);
-  } 
+  }
+   
+  // sauvegarde de la vue en localStorage
+  if(localStorage.getItem("view") != undefined){
+    let view = localStorage.getItem("view");
+    V.uicalendar.changeView(view)
+  }
 }
 
 
