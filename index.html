@@ -4,28 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MMI Calendar</title>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
   
     <div>
-      <header>
-        <nav>
+      <header class="header">
+        <nav class="nav">
             <!-- naviguer entre les semaines -->
-            <ul id="navigation">
-              <li><button id="previous">Précédent</button></li>
-              <li><button id="current">Aujourd'hui</button></li>
-              <li><button id="next">Suivant</button></li>
+            <ul class="nav__navigation" id="navigation">
+              <li class="nav__navigation-item"><button id="previous">Précédent</button></li>
+              <li class="nav__navigation-item"><button id="current">Aujourd'hui</button></li>
+              <li class="nav__navigation-item"><button id="next">Suivant</button></li>
             </ul>
 
             <!-- naviguer entre les view -->
-            <ul id="view">
-              <li><button id="day">Jour</button></li>
-              <li><button id="week">Semaine</button></li>
-              <li><button id="month">Mois</button></li>
+            <ul class="nav__views" id="view">
+              <li class="nav__views-item"><button id="day">Jour</button></li>
+              <li class="nav__views-item"><button id="week">Semaine</button></li>
+              <li class="nav__views-item"><button id="month">Mois</button></li>
             </ul>
 
             <!-- choix des années -->
-            <ul id="checkboxs-year">
+            <ul class="nav__years" id="checkboxs-year">
               <li>
                 <input type="checkbox" id="year" value="mmi1">
                 <label for="mmi1">MMI1</label>
@@ -42,7 +43,7 @@
           
 
           <!-- choix des groupes -->
-            <select name="groups" id="select-groups">
+            <select class="nav__groups" name="groups" id="select-groups">
               <option id="select-group-mmi1" value="BUT1-G1">BUT1-G1</option>
               <option id="select-group-mmi1" value="BUT1-G21">BUT1-G21</option>
               <option id="select-group-mmi1" value="BUT1-G22">BUT1-G22</option>
@@ -59,7 +60,7 @@
               <option id="select-group-mmi3" value="BUT3-G3">BUT3-G3</option>
             </select>
 
-            <div>
+            <div class="nav__search">
               <input id="searchBar" type="text" placeholder="Search..">
             </div>
             

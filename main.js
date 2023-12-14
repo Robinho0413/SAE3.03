@@ -54,18 +54,41 @@ C.init = function(){
   
   // sauvegarde des années en localStorage
   if(!localStorage.getItem("group") && localStorage.getItem("year") != undefined){
-    let year = JSON.parse(localStorage.getItem("year"));
-    V.uicalendar.clear();
-    V.courseColor(year);
-    V.uicalendar.createEvents(year);
+    // let year = JSON.parse(localStorage.getItem("year"));
+    // V.uicalendar.clear();
+    // V.courseColor(year);
+    // V.uicalendar.createEvents(year);
+    let year = localStorage.getItem("year")
+    let allInput = document.querySelectorAll('#year');
+
+
+    for(let y of allInput){
+      console.log(y.value)
+      if(year.includes(y.value)){
+        y.checked = true
+      }
+    }
+
+    C.handler_clickOnYear({target:{tagName:'INPUT'}})
   }
   
   // sauvegarde des groupes en localStorage
   if(!localStorage.getItem("year") && localStorage.getItem("group") != undefined){
-    let group = JSON.parse(localStorage.getItem("group"));
-    V.uicalendar.clear();
-    V.courseColor(group);
-    V.uicalendar.createEvents(group);
+    let group = localStorage.getItem("group")
+    C.handler_changeOnGroup({target:{value: group}})
+
+
+    // Récupérer la valeur de l'option
+    let selectOption = group;
+
+    let select = document.querySelector('#select-groups');
+
+    for (let option of select.options) {
+      if (option.value == selectOption) {
+        option.selected = true;
+        break;
+      }
+    }
   }
    
   // sauvegarde de la vue en localStorage
@@ -85,10 +108,13 @@ C.handler_clickOnYear = function(ev){
   
     let eventsByYear = [];
 
-    let years = document.querySelectorAll('#year')
+    let years = document.querySelectorAll('#year');
+
+    let yearStorage = [];
  
     for(let year of years){
       if(year.checked == true){
+        yearStorage.push(year.value);
         for (let event of allEvents){
           // compare l'id avec la value de chaque checkbox
           if(event.calendarId == year.value){
@@ -101,7 +127,7 @@ C.handler_clickOnYear = function(ev){
     localStorage.removeItem("year");
     localStorage.removeItem("group");
     
-    localStorage.setItem("year", JSON.stringify(eventsByYear));
+    localStorage.setItem("year", JSON.stringify(yearStorage));
       
     V.uicalendar.clear()
 
@@ -125,10 +151,11 @@ C.handler_changeOnGroup = function(ev){
     }
   }
 
+
   localStorage.removeItem("group");
   localStorage.removeItem("year");
   
-  localStorage.setItem("group", JSON.stringify(eventsByGroup));
+  localStorage.setItem("group", ev.target.value);
 
 
   V.uicalendar.clear()

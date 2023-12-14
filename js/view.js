@@ -43,6 +43,16 @@ V.uicalendar = new Calendar('#calendar', {
     taskView: false,
     eventView: ['time'],
   },
+  theme: {
+    common: {
+      backgroundColor: '#ece6dc',
+    },
+    week: {
+      today: {
+        color: 'black',
+      }
+    }
+  },
   template: {
     time: function(event) {
       return `<span style="color: white;">${event.title}</span>`;
