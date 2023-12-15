@@ -11,20 +11,9 @@
     <div>
       <header class="header">
         <nav class="nav">
-            <!-- naviguer entre les semaines -->
-            <ul class="nav__navigation" id="navigation">
-              <li class="nav__navigation-item"><button class="item-previous" id="previous"><img id="previous" src="assets/left.svg" alt=""></button></li>
-              <li class="nav__navigation-item"><button class="item-current" id="current">Aujourd'hui</button></li>
-              <li class="nav__navigation-item"><button class="item-next" id="next"><img id="next" src="assets/right.svg" alt=""></button></li>
-            </ul>
-
-            <!-- naviguer entre les view -->
-            <ul class="nav__views" id="view">
-              <li class="nav__views-item"><button class="btn" id="day">Jour</button></li>
-              <li class="nav__views-item"><button class="btn" id="week">Semaine</button></li>
-              <li class="nav__views-item"><button class="btn" id="month">Mois</button></li>
-            </ul>
-
+          <!-- Sidenav -->
+          <div id="mySidenav" class="sidenav">
+            <a id="closeBtn" href="#" class="close">×</a>
             <!-- choix des années -->
             <ul class="nav__years" id="checkboxs-year">
               <li class="nav__years-item">
@@ -40,9 +29,9 @@
                 <label for="mmi3">MMI3</label>
               </li>
             </ul>
-          
 
-          <!-- choix des groupes -->
+
+            <!-- choix des groupes -->
             <select class="nav__groups" name="groups" id="select-groups">
               <option id="select-group-mmi1" value="BUT1-G1">BUT1-G1</option>
               <option id="select-group-mmi1" value="BUT1-G21">BUT1-G21</option>
@@ -59,6 +48,68 @@
               <option id="select-group-mmi3" value="BUT3-G22">BUT3-G22</option>
               <option id="select-group-mmi3" value="BUT3-G3">BUT3-G3</option>
             </select>
+          </div>
+
+          <a href="#" id="openBtn">
+            <span class="burger-icon">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </a>
+
+
+
+
+
+            <!-- naviguer entre les semaines -->
+            <ul class="nav__navigation" id="navigation">
+              <li class="nav__navigation-item"><button class="item-previous" id="previous"><img id="previous" src="assets/left.svg" alt=""></button></li>
+              <li class="nav__navigation-item"><button class="item-current" id="current">Aujourd'hui</button></li>
+              <li class="nav__navigation-item"><button class="item-next" id="next"><img id="next" src="assets/right.svg" alt=""></button></li>
+            </ul>
+
+            <!-- naviguer entre les view -->
+            <ul class="nav__views" id="view">
+              <li class="nav__views-item"><button class="btn" id="day">Jour</button></li>
+              <li class="nav__views-item"><button class="btn" id="week">Semaine</button></li>
+              <li class="nav__views-item"><button class="btn" id="month">Mois</button></li>
+            </ul>
+
+            <!-- choix des années -->
+            <!-- <ul class="nav__years" id="checkboxs-year">
+              <li class="nav__years-item">
+                <input class="item-mmi" type="checkbox" id="year" value="mmi1">
+                <label for="mmi1">MMI1</label>
+              </li>
+              <li class="nav__years-item">
+                <input class="item-mmi" type="checkbox" id="year" value="mmi2">
+                <label for="mmi2">MMI2</label>
+              </li>
+              <li class="nav__years-item">
+                <input class="item-mmi" type="checkbox" id="year" value="mmi3">
+                <label for="mmi3">MMI3</label>
+              </li>
+            </ul> -->
+          
+
+          <!-- choix des groupes -->
+            <!-- <select class="nav__groups" name="groups" id="select-groups">
+              <option id="select-group-mmi1" value="BUT1-G1">BUT1-G1</option>
+              <option id="select-group-mmi1" value="BUT1-G21">BUT1-G21</option>
+              <option id="select-group-mmi1" value="BUT1-G22">BUT1-G22</option>
+              <option id="select-group-mmi1" value="BUT1-G3">BUT1-G3</option>
+
+              <option id="select-group-mmi2" value="BUT2-G1">BUT2-G1</option>
+              <option id="select-group-mmi2" value="BUT2-G21">BUT2-G21</option>
+              <option id="select-group-mmi2" value="BUT2-G22">BUT2-G22</option>
+              <option id="select-group-mmi2" value="BUT2-G3">BUT2-G3</option>
+
+              <option id="select-group-mmi3" value="BUT3-G1">BUT3-G1</option>
+              <option id="select-group-mmi3" value="BUT3-G21">BUT3-G21</option>
+              <option id="select-group-mmi3" value="BUT3-G22">BUT3-G22</option>
+              <option id="select-group-mmi3" value="BUT3-G3">BUT3-G3</option>
+            </select> -->
 
             <div class="nav__search">
               <input class="nav__search-input" id="searchBar" type="text" placeholder="Rechercher..">
