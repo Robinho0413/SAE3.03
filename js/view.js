@@ -51,8 +51,19 @@ V.uicalendar = new Calendar('#calendar', {
     week: {
       today: {
         color: 'black',
-      }
-    }
+        backgroundColor: '#ece6dc',
+      },
+      nowIndicatorPast: { border: '2px dashed black' },
+      nowIndicatorLabel: {color: 'black'},
+      nowIndicatorToday: { border: '2px solid black' },
+      nowIndicatorBullet: { backgroundColor: 'black' },
+      timeGridHourLine: { borderBottom: '1px solid #d4d1ca' }
+    },
+    month: {
+      weekend: {
+        backgroundColor: '#d4d1ca85',
+      },
+    },
   },
   template: {
     time: function(event) {
@@ -112,6 +123,7 @@ V.handler_clickOnView = function(ev){
   }
   console.log(ev.target.id)
 
+  //définition du bouton sélectionné en active
   if(ev.target.id != undefined){
     V.removeActiveView();
     V.addActiveView(ev.target);
