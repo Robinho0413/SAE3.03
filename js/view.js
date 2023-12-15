@@ -12,6 +12,9 @@ V.init = function(){
   // changement de la vue (mois, semaine, jour)
   let view = document.querySelector('#view');
   view.addEventListener('click', V.handler_clickOnView);
+
+  // la vue s'adapte durant le redimensionnement de la page
+  window.addEventListener('resize', V.deviceFormat);
 }
 
 // pour chaque année, une couleur est associé à un type de cours
@@ -106,7 +109,6 @@ V.addActiveView = function(elt){
 }
 
 
-
 // selection de la vue
 V.handler_clickOnView = function(ev){
   if(ev.target.id == 'day'){
@@ -134,19 +136,6 @@ V.handler_clickOnView = function(ev){
   localStorage.setItem("view", ev.target.id);
 }
 
-// C.handler_clickOnFilter = function(ev){
-//   if ( ev.target.dataset.filter != undefined )
-//   {
-//       V.removeActiveFilter();
-//       V.addActiveFilter(ev.target);
-//       let value = ev.target.dataset.filter;
-//       V.renderMenu( M.filterRecipes(value) );
-//   }
-// }
-
-
-
-
 
 // fonction pour affecter une couleur à un cours en fonction de son type : CM TD TP
 V.courseColor = function(objectevents) {
@@ -165,9 +154,6 @@ V.deviceFormat = function(){
     V.uicalendar.changeView('week');
   }
 }
-
-
-
 
 
 export { V };
