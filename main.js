@@ -53,19 +53,13 @@ C.init = function(){
 
   
   // sauvegarde des années en localStorage
-  if(!localStorage.getItem("group") && localStorage.getItem("year") != undefined){
-    // let year = JSON.parse(localStorage.getItem("year"));
-    // V.uicalendar.clear();
-    // V.courseColor(year);
-    // V.uicalendar.createEvents(year);
+  if(localStorage.getItem("year") != undefined){
     let year = localStorage.getItem("year")
-    let allInput = document.querySelectorAll('#year');
+    let inputs = document.querySelectorAll('#year');
 
-
-    for(let y of allInput){
-      console.log(y.value)
-      if(year.includes(y.value)){
-        y.checked = true
+    for(let input of inputs){
+      if(year.includes(input.value)){
+        input.checked = true
       }
     }
 
@@ -73,7 +67,7 @@ C.init = function(){
   }
   
   // sauvegarde des groupes en localStorage
-  if(!localStorage.getItem("year") && localStorage.getItem("group") != undefined){
+  if(localStorage.getItem("group") != undefined){
     let group = localStorage.getItem("group")
     C.handler_changeOnGroup({target:{value: group}})
 
@@ -110,11 +104,12 @@ C.handler_clickOnYear = function(ev){
 
     let years = document.querySelectorAll('#year');
 
-    let yearStorage = [];
+    // tableau servant à stockés les values de chaque checkbox cochés
+    let yearValues = [];
  
     for(let year of years){
       if(year.checked == true){
-        yearStorage.push(year.value);
+        yearValues.push(year.value);
         for (let event of allEvents){
           // compare l'id avec la value de chaque checkbox
           if(event.calendarId == year.value){
@@ -127,7 +122,7 @@ C.handler_clickOnYear = function(ev){
     localStorage.removeItem("year");
     localStorage.removeItem("group");
     
-    localStorage.setItem("year", JSON.stringify(yearStorage));
+    localStorage.setItem("year", JSON.stringify(yearValues));
       
     V.uicalendar.clear()
 

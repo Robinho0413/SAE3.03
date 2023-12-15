@@ -27,7 +27,9 @@ body{
 .nav{
     display: flex;
     flex-wrap: wrap;
-    gap: 3rem;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
     font-family: 'Poppins', sans-serif;
 
 }
@@ -35,11 +37,35 @@ body{
 .nav__navigation{
     display: flex;
     flex-direction: row;
+    align-items: center;
     gap: .5rem;
 }
 
 .nav__navigation-item button{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3rem;
+    border: none;
     font-family: 'Poppins', sans-serif;
+    transition: .5s;
+}
+
+.nav__navigation-item button:hover{
+    background: #d4d1ca;
+}
+
+.item-current{
+    padding: .5rem .8rem;
+}
+
+.item-previous{
+    padding: .6rem;
+}
+
+.item-next{
+    padding: .6rem;
 }
 
 
@@ -50,7 +76,20 @@ body{
 }
 
 .nav__views-item button{
+    cursor: pointer;
+    padding: .5rem .8rem;
+    border-radius: 3rem;
+    border: none;
     font-family: 'Poppins', sans-serif;
+    transition: .5s;
+}
+
+.nav__views-item button:hover{
+    background: #d4d1ca;
+}
+
+.active{
+    background: #d4d1ca;
 }
 
 
@@ -59,3 +98,43 @@ body{
     flex-direction: row;
     gap: .5rem;
 }
+
+.nav__years-item{
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.item-mmi{
+    appearance: none;
+    cursor: pointer;
+    border: solid 1px;
+    height: 25px;
+    width: 25px;
+    border: none;
+    background: white;
+    border-radius: 50%;
+
+}
+
+.item-mmi:hover{
+    background: #d4d1ca;
+    transition: .5s;
+}
+
+.item-mmi:checked{
+    transition: .1s;
+    background: #ece6dc;
+    border: solid 8px #868075;
+    
+}
+
+
+.nav__groups{
+    cursor: pointer;
+    border: none;
+    padding: .5rem;
+    border-radius: 3rem;
+}
+
+

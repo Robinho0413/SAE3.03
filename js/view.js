@@ -1,5 +1,6 @@
 import Calendar from '@toast-ui/calendar';
 import '@toast-ui/calendar/dist/toastui-calendar.min.css';
+// import { defineConfig } from 'vite';
 
 let V = {};
 
@@ -80,6 +81,19 @@ V.handler_clickOnNavigation = function(ev){
 }
 
 
+V.removeActiveView = function(){
+  let btns = document.querySelectorAll(".btn")
+  for(let btn of btns){
+      if (btn.classList.contains("active")){
+          btn.classList.remove("active");
+      }
+  }
+}
+
+V.addActiveView = function(elt){
+  elt.classList.add("active");
+}
+
 
 
 // selection de la vue
@@ -96,11 +110,27 @@ V.handler_clickOnView = function(ev){
     // change to monthly view
     V.uicalendar.changeView('month');
   }
+  console.log(ev.target.id)
+
+  if(ev.target.id != undefined){
+    V.removeActiveView();
+    V.addActiveView(ev.target);
+  }
 
   localStorage.removeItem("view");
 
   localStorage.setItem("view", ev.target.id);
 }
+
+// C.handler_clickOnFilter = function(ev){
+//   if ( ev.target.dataset.filter != undefined )
+//   {
+//       V.removeActiveFilter();
+//       V.addActiveFilter(ev.target);
+//       let value = ev.target.dataset.filter;
+//       V.renderMenu( M.filterRecipes(value) );
+//   }
+// }
 
 
 
@@ -123,6 +153,8 @@ V.deviceFormat = function(){
     V.uicalendar.changeView('week');
   }
 }
+
+
 
 
 
