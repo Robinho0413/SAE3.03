@@ -85,14 +85,6 @@ body{
     margin: 6px 0;
   }
 
-  
-
-
-
-
-
-
-
 
 .nav{
     display: flex;
@@ -102,6 +94,12 @@ body{
     gap: 1rem;
     font-family: 'Poppins', sans-serif;
 
+}
+
+.navigation{
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .nav__navigation{
@@ -211,7 +209,12 @@ body{
     box-shadow: 0px 2px 5px -3px rgba(0,0,0,0.5);
 }
 
+.nav__search{
+    width: 100%;
+}
+
 .nav__search-input{
+    width: 100%;
     padding: .5rem .8rem;
     border-radius: 3rem;
     border: none;
@@ -223,6 +226,19 @@ body{
 /* Grandir la taille de l'heure actuelle sur le calendrier */
 .toastui-calendar-template-timegridNowIndicatorLabel{
     font-size: 1rem;
+}
+
+
+@media (min-width: 400px){
+    .nav__search{
+        width: 24rem;
+    }
+}
+
+@media (min-width: 520px){
+    .navigation{
+        width: 186px;
+    }
 }
 
 
